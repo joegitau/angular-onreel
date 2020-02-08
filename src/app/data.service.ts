@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { catchError } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
 
 import { _APIKEY } from "./_keys";
 import { IMovie } from "./movie";
@@ -26,12 +27,20 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   // fetchMovies
-  fetchMovies(): Observable<IMovie[]> {
-    return this.http.get<IMovie[]>(this.getUrl("movie"));
+  fetchMovies(movie: string): Observable<IMovie[]> {
+    return this.http
+      .get<IMovie[]>(this.getUrl(movie))
+      .pipe(catchError(this.handleErrors));
   }
 
   // fetchTvshows
-  fetchTvShows(): Observable<ITvShow[]> {
-    return this.http.get<ITvShow[]>(this.getUrl("tv"));
+  fetchTvShows(tv: string): Observable<ITvShow[]> {
+    return this.http
+      .get<ITvShow[]>(this.getUrl(tv))
+      .pipe(catchError(this.handleErrors));
+  }
+
+  handleErrors(error: HttpErrorResponse) {
+    return throwError(error);
   }
 }

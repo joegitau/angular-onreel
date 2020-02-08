@@ -1,1 +1,9 @@
-<p>movielist works!</p>
+<div class="row">
+  <div class="col-md-12" *ngIf="movieList">
+    <div class="card" *ngFor="let movie of movieList">
+      <div class="card-body">
+        <h4 class="card-title">{{ movie.results }}</h4>
+      </div>
+    </div>
+  </div>
+</div>

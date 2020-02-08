@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+
+import { DataService } from "../data.service";
 
 @Component({
   selector: "app-movielist",
@@ -7,8 +8,22 @@ import { Observable } from "rxjs";
   styleUrls: ["./movielist.component.scss"]
 })
 export class MovielistComponent implements OnInit {
-  public movieList = [];
-  constructor() {}
+  public movieList = {};
+  constructor(private movieService: DataService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.movieService.fetchMovies("movie").subscribe(
+      data => {
+        console.log(data);
+        this.movieList = data;
+        // this.movieList = Object.entries(data);
+        // for (let key in data) {
+        //   if (data.hasOwnProperty(key)) {
+        //     this.movieList.push(data[key]);
+        //   }
+        // }
+      },
+      error => console.log(error)
+    );
+  }
 }
