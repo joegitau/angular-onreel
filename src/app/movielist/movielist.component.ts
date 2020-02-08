@@ -8,7 +8,7 @@ import { DataService } from "../data.service";
   styleUrls: ["./movielist.component.scss"]
 })
 export class MovielistComponent implements OnInit {
-  public movieList = {};
+  public movieList: object;
   constructor(private movieService: DataService) {}
 
   ngOnInit() {
@@ -16,12 +16,6 @@ export class MovielistComponent implements OnInit {
       data => {
         console.log(data);
         this.movieList = data;
-        // this.movieList = Object.entries(data);
-        // for (let key in data) {
-        //   if (data.hasOwnProperty(key)) {
-        //     this.movieList.push(data[key]);
-        //   }
-        // }
       },
       error => console.log(error)
     );
