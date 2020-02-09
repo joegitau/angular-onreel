@@ -12,7 +12,7 @@ import { ITvShow } from "./tvshow";
 })
 export class DataService {
   public URL_TYPE = {
-    tv: "tv/on-the-air",
+    tv: "tv/on_the_air",
     movie: "movie/now_playing"
   };
 

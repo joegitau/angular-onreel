@@ -6,6 +6,6 @@ export interface ITvShow {
   number_of_episodes: number;
   number_of_seasons: number;
   backdrop_path?: string;
-  next_episode_to_air?: string;
+  vote_average?: number;
   status: string;
 }
