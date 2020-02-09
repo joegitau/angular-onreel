@@ -1,8 +1,19 @@
-<div class="row">
-  <div class="col-md-12" *ngIf="movieList">
-    <div class="card" *ngFor="let movie of movieList.results">
-      <div class="card-body">
-        <h4 class="card-title">{{ movie.title }}</h4>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="row" *ngIf="movieList">
+      <div class="col-md-3" *ngFor="let movie of movieList.results">
+        <div class="card mb-4 shadow-sm">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w200/' + movie.poster_path"
+            class="card-img-top"
+          />
+
+          <div class="card-body">
+            <h4 class="card-title">{{ movie.title }}</h4>
+            <p class="card-text">{{ movie.release_date }}</p>
+            <p class="card-text">{{ movie.vote_average }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

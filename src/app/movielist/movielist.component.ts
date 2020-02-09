@@ -9,6 +9,8 @@ import { DataService } from "../data.service";
 })
 export class MovielistComponent implements OnInit {
   public movieList: object;
+  public imgHttp = "https://image.tmdb.org/t/p/w200/";
+
   constructor(private movieService: DataService) {}
 
   ngOnInit() {
